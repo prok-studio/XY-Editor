@@ -14,10 +14,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build APK inside Isolated Kivy Container
-      uses: ActionsTools/kivy-buildozer-action@v1
+      uses: subfuzion/kivy-buildozer-action@v1
       with:
         image: 'kivy/buildozer:latest'
-        workdir: .
         command: buildozer -v android debug
 
     - name: Upload APK Artifact
