@@ -24,19 +24,21 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Install Buildozer dependencies
+    - name: Install Absolute All Dependencies
       run: |
         sudo apt update
-        sudo apt install -y git zip unzip openjdk-17-jdk autoconf automake libtool m4 pkg-config zlib1g-dev libncurses5-dev libgdbm-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev tk-dev libgdbm-compat-dev liblzma-dev lzma
+        sudo apt install -y git zip unzip openjdk-17-jdk autoconf automake libtool m4 pkg-config zlib1g-dev libncurses5-dev libgdbm-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev tk-dev libgdbm-compat-dev liblzma-dev lzma libspatialindex-dev
         pip install --upgrade pip
         pip install "cython==3.0.10" virtualenv buildozer
 
-    - name: Build APK with Buildozer
+    - name: Deep Clean and Fresh Build APK
       run: |
         export BUILDOZER_ALLOW_KIVY_NEW_DESIGN=1
+        buildozer android clean || true
         yes | buildozer -v android debug
 
     - name: Upload APK Artifact
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: package
