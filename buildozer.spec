@@ -21,6 +21,7 @@ fullscreen = 0
 # Разрешения не нужны: приложение ничего не читает и не отправляет
 android.permissions =
 
+android.ndk = 25b
 android.api = 33
 android.minapi = 21
 android.archs = arm64-v8a
