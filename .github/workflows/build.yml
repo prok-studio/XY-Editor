@@ -24,6 +24,16 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Create 10GB Swap Space (Защита от нехватки памяти)
+      run: |
+        sudo swapoff -a
+        sudo rm -f /swapfile
+        sudo dd if=/dev/zero of=/swapfile bs=1M count=10240
+        sudo chmod 600 /swapfile
+        sudo mkswap /swapfile
+        sudo swapon /swapfile
+        echo "=== Свап-память успешно расширена! ==="
+
     - name: Install Absolute All Dependencies
       run: |
         sudo apt update
@@ -33,14 +43,11 @@ jobs:
 
     - name: Quick Code Check
       run: |
-        echo "=== Проверяем файлы на ошибки синтаксиса ==="
         python -m py_compile main.py logic.py
-        echo "=== Синтаксических ошибок не обнаружено! ==="
 
     - name: Deep Clean and Fresh Build APK
       run: |
         export BUILDOZER_ALLOW_KIVY_NEW_DESIGN=1
-        export p4a_total_cores=1
         yes | buildozer -v android debug
 
     - name: Upload APK Artifact
