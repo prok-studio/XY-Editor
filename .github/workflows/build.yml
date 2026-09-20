@@ -31,6 +31,12 @@ jobs:
         pip install --upgrade pip
         pip install "cython==3.0.10" virtualenv buildozer
 
+    - name: Quick Code Check
+      run: |
+        echo "=== Проверяем файлы на ошибки синтаксиса ==="
+        python -m py_compile main.py logic.py
+        echo "=== Синтаксических ошибок не обнаружено! ==="
+
     - name: Deep Clean and Fresh Build APK
       run: |
         export BUILDOZER_ALLOW_KIVY_NEW_DESIGN=1
