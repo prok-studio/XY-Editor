@@ -1,32 +1,28 @@
 [app]
-
 title = XY Editor
 package.name = xyeditor
-package.domain = org.example
-
+package.domain = org.prokstudio
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
-
-# Значок приложения (лучше квадратный PNG, например 512x512)
-icon.filename = %(source.dir)s/Images/XY.png
-
+source.include_exts = py,png,jpg,kv,atlas,json,txt,ttf
 version = 1.0
 
-# Только Kivy: numpy и matplotlib не нужны (график рисуется на canvas Kivy)
-requirements = python3,kivy==2.3.0,cython==3.0.10,android,pillow
+# Добавили все возможные библиотеки про запас, включая Pillow для картинок
+requirements = python3,kivy==2.3.0,cython==3.0.10,android,pillow,jnius,plyer
 
 orientation = portrait
 fullscreen = 0
 
-# Разрешения не нужны: приложение ничего не читает и не отправляет
-android.permissions =
-
-android.ndk = 25b
+# Настройки стабильной сборки Android SDK/NDK
 android.api = 33
 android.minapi = 21
+android.ndk = 25b
 android.archs = arm64-v8a
 android.accept_sdk_license = True
+android.skip_update = False
 android.allow_backup = True
+
+# Включаем автоматическую склейку Java ресурсов
+android.gradle_dependencies = 
 
 [buildozer]
 log_level = 2
