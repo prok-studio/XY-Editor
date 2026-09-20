@@ -13,7 +13,7 @@ orientation = portrait
 fullscreen = 0
 
 # Настройки стабильной сборки Android SDK/NDK
-android.api = 33
+android.api = 34
 android.minapi = 21
 android.ndk = 25b
 android.archs = arm64-v8a
