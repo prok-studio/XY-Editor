@@ -13,7 +13,7 @@ icon.filename = %(source.dir)s/Images/XY.png
 version = 1.0
 
 # Только Kivy: numpy и matplotlib не нужны (график рисуется на canvas Kivy)
-requirements = python3,kivy==2.3.0
+requirements = python3,kivy,android,pillow
 
 orientation = portrait
 fullscreen = 0
