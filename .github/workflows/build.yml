@@ -40,6 +40,7 @@ jobs:
     - name: Deep Clean and Fresh Build APK
       run: |
         export BUILDOZER_ALLOW_KIVY_NEW_DESIGN=1
+        export p4a_total_cores=1
         yes | buildozer -v android debug
 
     - name: Upload APK Artifact
